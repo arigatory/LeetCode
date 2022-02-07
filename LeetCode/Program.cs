@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LeetCode
 {
@@ -8,16 +10,16 @@ namespace LeetCode
         {
             Console.WriteLine("Hello World!");
 
-            int[] nums = new  int[] { 1,2,2,2}; // Input array
-            int[] expectedNums = new int[]{ 1, 1, 2, 2, 3}; // The expected answer with correct length
+            int[] nums = new  int[] {0,4,3,0 }; // Input array
+            int target = 0;
             var sol = new Solution();
-            int k = sol.RemoveDuplicates(nums); // Calls your implementation
-            foreach (var item in nums)
+            
+            var res = sol.TwoSum(nums, target); // Calls your implementation
+            foreach (var item in res)
             {
                 Console.Write($"{item}, ");
             }
             Console.WriteLine();
-            Console.WriteLine(k);
         }
     }
 
@@ -25,34 +27,41 @@ namespace LeetCode
     {
         public int RemoveDuplicates(int[] nums)
         {
-            int j = 0;
-            int i = 1;
+            int i = 0;
 
-            while (i < nums.Length)
+            foreach (int num in nums)
             {
-                if (nums[i]==nums[j])
+                if (i < 2 || num > nums[i - 2])
                 {
-                    while (nums[i]==nums[j])
-                    {
-                        i++;
-                        if (i==nums.Length)
-                        {
-                            j++;
-                            nums[j] = nums[i-1];
-                            return j+1;
-                        }
-                    }
-                    j++;
-                    nums[j]=nums[j-1];
-                }
-                else
-                {
-                    j++;
-                    nums[j]=nums[i];
-                    i++;
+                    nums[i++] = num;
                 }
             }
-            return j+1;
+
+            return i;
         }
+
+        public int[] TwoSum(int[] nums, int target)
+        {
+            int i = 0;
+            
+            int j;
+            int n = nums.Length;
+            while (i<n)
+            {
+                j = i + 1;
+                while (j<n)
+                {
+                    if (nums[i]+ nums[j] == target)
+                    {
+                        return new int[]{i,j};
+                    }
+                    j++;
+                }
+                i++;
+            }
+
+            return null;
+        }
+
     }
 }

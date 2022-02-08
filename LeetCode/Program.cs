@@ -4,6 +4,17 @@ using System.Linq;
 
 namespace LeetCode
 {
+    public class ListNode
+    {
+      public int val;
+      public ListNode next;
+      public ListNode(int val = 0, ListNode next = null)
+        {
+            this.val = val;
+            this.next = next;
+                 }
+}
+
     internal class Program
     {
         static void Main(string[] args)
@@ -25,6 +36,13 @@ namespace LeetCode
 
     public class Solution
     {
+        public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+        {
+            var res = new ListNode();
+
+            return res;
+        }
+
         public int RemoveDuplicates(int[] nums)
         {
             int i = 0;
